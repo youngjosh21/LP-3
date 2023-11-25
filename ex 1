@@ -1,65 +1,86 @@
-// Exercício 1:
-// Crie um algoritmo que leia o nome, a idade, o peso e a altura de 5 pessoas, armazenando em vetores.
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
 
-//- Mostre as informações solicitadas de cada pessoa e informe:
-// O nome e a altura da pessoa mais alta e a mais baixa.
-// O nome e o peso da pessoa com maior peso e menor peso;
-// O nome a idade da pessoa com mais idade e com menos idade.
+int  main(){
+ setlocale(LC_ALL, "portuguese");
+ 
+int i;
+char nomes[5][500];
+int idade[5];
+float peso[5];
+float altura[5];
+float alto = 0;
+float baixo = 99999;
+int velho = 0;
+int novo = 99999;
+float gordo = 0;
+float magro = 99999;
+int pessoaAlta = 0;
+int pessoaBaixa = 0;
+int pessoaVelha= 0;
+int pessoaNova = 0;
+int pessoaGorda = 0;
+int pessoaMagra = 0;
 
-int main()
-{
-    setlocale(LC_ALL, "portuguese");
-    int i;
-    char nome[2][50];
-    int idade[2];
-    float altura[2];
-    float peso[2];
-int MaiorIdade;
-int MenorIdade;
-int MaiorAltura;
-int MenorAltura;
-int Maiorpeso;
-int Menorpeso;
-    for (i = 0; i < 2; i++)
-    {
-        printf("Digite o nome da pessoa %d: ", i + 1);
-        gets(nome[i]);
-        printf("Digite a idade da pessoa %d: ", i + 1);
+    for (i = 0; i < 5; i++) {
+        printf("Digite seu nome: ");
+        gets(nomes[i]);
+
+        printf("Digite sua idade: ");
         scanf("%d", &idade[i]);
-        printf("Digite a altura da pessoa %d: ", i + 1);
-        scanf("%1.f", &altura[i]);
-        printf("Digite o peso da pessoa %d: ", i + 1);
-        scanf("%1.f", &peso[i]);
-        if (idade[i] > MaiorIdade)
-        {
-            MaiorIdade = idade[i];
+
+        printf("Digite seu peso: ");
+        scanf("%f", &peso[i]);
+
+        printf("Digite sua altura: ");
+        scanf("%f", &altura[i]);
+
+   fflush(stdin);
+
+        if (idade[i] > velho) {
+            velho = idade[i];
+            pessoaVelha = i;
         }
-        if (idade[i] < MenorIdade)
-        {
-            MenorIdade = idade[i];
+        if (idade[i] < novo) {
+            novo = idade[i];
+            pessoaNova = i;
         }
-        if (peso[i] > Maiorpeso)
-        {
-            Maiorpeso = peso[i];
+
+        if (peso[i] > gordo) {
+            gordo = peso[i];
+            pessoaGorda = i;
         }
-        if (peso[i] < Menorpeso)
-        {
-            Menorpeso = peso[i];
+        if (peso[i] < magro) {
+            magro = peso[i];
+            pessoaMagra = i;
         }
-        if (altura[i] > MaiorAltura)
-        {
-            MaiorAltura = altura[i];
+
+        if (altura[i] > alto) {
+            alto = altura[i];
+            pessoaAlta = i;
         }
-        if (altura[i] < MenorAltura)
-        {
-            MenorAltura = altura[i];
+        if (altura[i] < baixo) {
+            baixo = altura[i];
+            pessoaBaixa = i;
         }
     }
-    printf("Maior idade: %d\n", MaiorIdade);
-    printf("Menor idade: %d\n", MenorIdade);
-    printf("Maior peso: %.2f\n", Maiorpeso);
-    printf("Menor peso: %.2f\n", Menorpeso);
-    printf("Maior altura: %.2f\n", MaiorAltura);
-    printf("Menor altura: %.2f\n", MenorAltura);
-    return 0;
+
+    
+
+printf("\n Resultados:\n");
+
+    printf("Pessoa mais alta: %s, Altura: %.2f\n", nomes[pessoaAlta], alto);
+    printf("Pessoa mais baixa: %s, Altura: %.2f\n", nomes[pessoaBaixa], baixo);
+    printf("Pessoa mais pesada: %s, Peso: %.2f\n", nomes[pessoaGorda], gordo);
+    printf("Pessoa mais leve: %s, Peso: %.2f\n", nomes[pessoaMagra], magro);
+    printf("Pessoa mais velha: %s, Idade: %d\n", nomes[pessoaVelha], velho);
+    printf("Pessoa mais nova: %s, Idade: %d\n", nomes[pessoaNova], novo);
+
+
+
+
+
+return 0;
 }
